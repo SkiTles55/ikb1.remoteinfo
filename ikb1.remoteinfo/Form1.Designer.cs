@@ -89,6 +89,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.BackColor = System.Drawing.SystemColors.Window;
             this.groupBox1.Controls.Add(this.disconnectBtn);
             this.groupBox1.Controls.Add(this.connectBtn);
             this.groupBox1.Controls.Add(this.ipBox);
@@ -275,6 +276,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.Window;
             this.ClientSize = new System.Drawing.Size(831, 587);
             this.Controls.Add(this.wmiBox);
             this.Controls.Add(this.groupBox2);
