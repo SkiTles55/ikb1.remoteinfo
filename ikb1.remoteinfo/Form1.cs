@@ -86,6 +86,7 @@ namespace ikb1.remoteinfo
                 connectBtn.Enabled = false;
                 disconnectBtn.Enabled = true;
                 wmiBox.Enabled = true;
+                CmdBox.Enabled = true;
             }
             catch (Exception ex)
             {
@@ -116,6 +117,7 @@ namespace ikb1.remoteinfo
             statuslabel.Text = "Отключено";
             statuslabel.ForeColor = System.Drawing.Color.Red;
             wmiBox.Enabled = false;
+            CmdBox.Enabled = false;
         }
 
         private void GetWMIClasses()
@@ -134,10 +136,13 @@ namespace ikb1.remoteinfo
         {
             propsBox.Items.Clear();
             PrintPropertiesOfWmiClass("root\\cimv2", wmiclass.SelectedItem.ToString());
+            wmiCmdList.Items.Clear();
+            GetExecutes(PCscope, wmiclass.SelectedItem.ToString());
         }
 
         private void PrintPropertiesOfWmiClass(string namespaceName, string wmiClassName)
         {
+            wmiclass.Enabled = false;
             ManagementPath managementPath = new ManagementPath();
             managementPath.Path = namespaceName;
             ManagementScope managementScope = new ManagementScope(managementPath);
@@ -148,10 +153,21 @@ namespace ikb1.remoteinfo
             {
                 PropertyDataCollection props = managementObject.Properties;
                 foreach (PropertyData prop in props)
-                {
                     propsBox.Items.Add(prop.Name);
-                }
             }
+            wmiclass.Enabled = true;
+        }
+
+        private void GetExecutes(ManagementScope scope, string wmiClassName)
+        {
+            wmiclass.Enabled = false;
+            var wmiProcess = new ManagementClass(scope, new ManagementPath(wmiClassName), new ObjectGetOptions());
+            if (wmiProcess.Methods.Count != 0 || wmiProcess.Methods != null)
+            {                
+                foreach (var m in wmiProcess.Methods)
+                    wmiCmdList.Items.Add(m.Name);                
+            }
+            wmiclass.Enabled = true;
         }
 
         private void startbutton_Click(object sender, EventArgs e)
@@ -173,6 +189,22 @@ namespace ikb1.remoteinfo
         private void clearbtn_Click(object sender, EventArgs e)
         {
             outputBox.Clear();
+        }
+
+        private void wmiCmdList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            wmiclass.Enabled = false;
+            testOutput.Clear();
+            var wmiProcess = new ManagementClass(PCscope, new ManagementPath(wmiclass.SelectedItem.ToString()), new ObjectGetOptions());
+            foreach (var m in wmiProcess.Methods)
+            {
+                if (m.Name == wmiCmdList.SelectedItem.ToString() && m.InParameters != null && m.InParameters.Properties != null)
+                {
+                    foreach (var pr in m.InParameters.Properties)
+                        testOutput.AppendText(pr.Name + Environment.NewLine);
+                }
+            }
+            wmiclass.Enabled = true;
         }
     }
 }

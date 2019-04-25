@@ -50,9 +50,13 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.wmiclass = new System.Windows.Forms.ListBox();
+            this.CmdBox = new System.Windows.Forms.GroupBox();
+            this.wmiCmdList = new System.Windows.Forms.ListBox();
+            this.testOutput = new System.Windows.Forms.RichTextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.wmiBox.SuspendLayout();
+            this.CmdBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // label2
@@ -173,14 +177,14 @@
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.groupBox2.Location = new System.Drawing.Point(413, 12);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(409, 567);
+            this.groupBox2.Size = new System.Drawing.Size(409, 359);
             this.groupBox2.TabIndex = 9;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Вывод";
             // 
             // clearbtn
             // 
-            this.clearbtn.Location = new System.Drawing.Point(213, 513);
+            this.clearbtn.Location = new System.Drawing.Point(213, 304);
             this.clearbtn.Name = "clearbtn";
             this.clearbtn.Size = new System.Drawing.Size(190, 44);
             this.clearbtn.TabIndex = 2;
@@ -190,7 +194,7 @@
             // 
             // savebutton
             // 
-            this.savebutton.Location = new System.Drawing.Point(7, 513);
+            this.savebutton.Location = new System.Drawing.Point(7, 304);
             this.savebutton.Name = "savebutton";
             this.savebutton.Size = new System.Drawing.Size(190, 44);
             this.savebutton.TabIndex = 1;
@@ -203,7 +207,7 @@
             this.outputBox.Location = new System.Drawing.Point(7, 20);
             this.outputBox.Name = "outputBox";
             this.outputBox.ReadOnly = true;
-            this.outputBox.Size = new System.Drawing.Size(396, 484);
+            this.outputBox.Size = new System.Drawing.Size(396, 276);
             this.outputBox.TabIndex = 0;
             this.outputBox.Text = "";
             // 
@@ -216,16 +220,16 @@
             this.wmiBox.Controls.Add(this.wmiclass);
             this.wmiBox.Enabled = false;
             this.wmiBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.wmiBox.Location = new System.Drawing.Point(12, 205);
+            this.wmiBox.Location = new System.Drawing.Point(12, 180);
             this.wmiBox.Name = "wmiBox";
-            this.wmiBox.Size = new System.Drawing.Size(395, 374);
+            this.wmiBox.Size = new System.Drawing.Size(395, 426);
             this.wmiBox.TabIndex = 10;
             this.wmiBox.TabStop = false;
             this.wmiBox.Text = "WMI Запросы";
             // 
             // startbutton
             // 
-            this.startbutton.Location = new System.Drawing.Point(266, 320);
+            this.startbutton.Location = new System.Drawing.Point(266, 376);
             this.startbutton.Name = "startbutton";
             this.startbutton.Size = new System.Drawing.Size(121, 44);
             this.startbutton.TabIndex = 4;
@@ -236,16 +240,16 @@
             // propsBox
             // 
             this.propsBox.FormattingEnabled = true;
-            this.propsBox.Location = new System.Drawing.Point(156, 187);
+            this.propsBox.Location = new System.Drawing.Point(156, 217);
             this.propsBox.Name = "propsBox";
             this.propsBox.ScrollAlwaysVisible = true;
-            this.propsBox.Size = new System.Drawing.Size(231, 109);
+            this.propsBox.Size = new System.Drawing.Size(231, 151);
             this.propsBox.TabIndex = 3;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(20, 187);
+            this.label6.Location = new System.Drawing.Point(20, 217);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(123, 20);
             this.label6.TabIndex = 2;
@@ -267,17 +271,49 @@
             this.wmiclass.Location = new System.Drawing.Point(156, 31);
             this.wmiclass.Name = "wmiclass";
             this.wmiclass.ScrollAlwaysVisible = true;
-            this.wmiclass.Size = new System.Drawing.Size(231, 124);
+            this.wmiclass.Size = new System.Drawing.Size(231, 164);
             this.wmiclass.Sorted = true;
             this.wmiclass.TabIndex = 0;
             this.wmiclass.SelectedIndexChanged += new System.EventHandler(this.wmiclass_SelectedIndexChanged);
+            // 
+            // CmdBox
+            // 
+            this.CmdBox.Controls.Add(this.testOutput);
+            this.CmdBox.Controls.Add(this.wmiCmdList);
+            this.CmdBox.Enabled = false;
+            this.CmdBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.CmdBox.Location = new System.Drawing.Point(413, 378);
+            this.CmdBox.Name = "CmdBox";
+            this.CmdBox.Size = new System.Drawing.Size(403, 228);
+            this.CmdBox.TabIndex = 11;
+            this.CmdBox.TabStop = false;
+            this.CmdBox.Text = "WMI команды";
+            // 
+            // wmiCmdList
+            // 
+            this.wmiCmdList.FormattingEnabled = true;
+            this.wmiCmdList.ItemHeight = 20;
+            this.wmiCmdList.Location = new System.Drawing.Point(7, 26);
+            this.wmiCmdList.Name = "wmiCmdList";
+            this.wmiCmdList.Size = new System.Drawing.Size(190, 144);
+            this.wmiCmdList.TabIndex = 0;
+            this.wmiCmdList.SelectedIndexChanged += new System.EventHandler(this.wmiCmdList_SelectedIndexChanged);
+            // 
+            // testOutput
+            // 
+            this.testOutput.Location = new System.Drawing.Point(213, 26);
+            this.testOutput.Name = "testOutput";
+            this.testOutput.Size = new System.Drawing.Size(184, 144);
+            this.testOutput.TabIndex = 1;
+            this.testOutput.Text = "";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(831, 587);
+            this.ClientSize = new System.Drawing.Size(831, 618);
+            this.Controls.Add(this.CmdBox);
             this.Controls.Add(this.wmiBox);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -291,6 +327,7 @@
             this.groupBox2.ResumeLayout(false);
             this.wmiBox.ResumeLayout(false);
             this.wmiBox.PerformLayout();
+            this.CmdBox.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -317,6 +354,9 @@
         private System.Windows.Forms.Button startbutton;
         private System.Windows.Forms.Button savebutton;
         private System.Windows.Forms.Button clearbtn;
+        private System.Windows.Forms.GroupBox CmdBox;
+        private System.Windows.Forms.ListBox wmiCmdList;
+        private System.Windows.Forms.RichTextBox testOutput;
     }
 }
 
