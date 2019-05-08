@@ -51,8 +51,9 @@
             this.label4 = new System.Windows.Forms.Label();
             this.wmiclass = new System.Windows.Forms.ListBox();
             this.CmdBox = new System.Windows.Forms.GroupBox();
-            this.wmiCmdList = new System.Windows.Forms.ListBox();
-            this.testOutput = new System.Windows.Forms.RichTextBox();
+            this.programmRun = new System.Windows.Forms.Button();
+            this.programmBox = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.wmiBox.SuspendLayout();
@@ -136,10 +137,11 @@
             // ipBox
             // 
             this.ipBox.Location = new System.Drawing.Point(125, 50);
-            this.ipBox.Mask = "##.##.###.###";
+            this.ipBox.Mask = "099/099/099/099";
             this.ipBox.Name = "ipBox";
             this.ipBox.Size = new System.Drawing.Size(124, 26);
             this.ipBox.TabIndex = 11;
+            this.ipBox.ValidatingType = typeof(System.Net.IPAddress);
             // 
             // label5
             // 
@@ -278,8 +280,9 @@
             // 
             // CmdBox
             // 
-            this.CmdBox.Controls.Add(this.testOutput);
-            this.CmdBox.Controls.Add(this.wmiCmdList);
+            this.CmdBox.Controls.Add(this.programmRun);
+            this.CmdBox.Controls.Add(this.programmBox);
+            this.CmdBox.Controls.Add(this.label7);
             this.CmdBox.Enabled = false;
             this.CmdBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.CmdBox.Location = new System.Drawing.Point(413, 378);
@@ -289,30 +292,38 @@
             this.CmdBox.TabStop = false;
             this.CmdBox.Text = "WMI команды";
             // 
-            // wmiCmdList
+            // programmRun
             // 
-            this.wmiCmdList.FormattingEnabled = true;
-            this.wmiCmdList.ItemHeight = 20;
-            this.wmiCmdList.Location = new System.Drawing.Point(7, 26);
-            this.wmiCmdList.Name = "wmiCmdList";
-            this.wmiCmdList.Size = new System.Drawing.Size(190, 144);
-            this.wmiCmdList.TabIndex = 0;
-            this.wmiCmdList.SelectedIndexChanged += new System.EventHandler(this.wmiCmdList_SelectedIndexChanged);
+            this.programmRun.Location = new System.Drawing.Point(277, 49);
+            this.programmRun.Name = "programmRun";
+            this.programmRun.Size = new System.Drawing.Size(120, 30);
+            this.programmRun.TabIndex = 2;
+            this.programmRun.Text = "Запуск";
+            this.programmRun.UseVisualStyleBackColor = true;
             // 
-            // testOutput
+            // programmBox
             // 
-            this.testOutput.Location = new System.Drawing.Point(213, 26);
-            this.testOutput.Name = "testOutput";
-            this.testOutput.Size = new System.Drawing.Size(184, 144);
-            this.testOutput.TabIndex = 1;
-            this.testOutput.Text = "";
+            this.programmBox.Location = new System.Drawing.Point(7, 51);
+            this.programmBox.Name = "programmBox";
+            this.programmBox.Size = new System.Drawing.Size(259, 26);
+            this.programmBox.TabIndex = 1;
+            this.programmBox.Text = "notepad.exe";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(7, 25);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(150, 20);
+            this.label7.TabIndex = 0;
+            this.label7.Text = "Запуск программы";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(831, 618);
+            this.ClientSize = new System.Drawing.Size(831, 615);
             this.Controls.Add(this.CmdBox);
             this.Controls.Add(this.wmiBox);
             this.Controls.Add(this.groupBox2);
@@ -328,6 +339,7 @@
             this.wmiBox.ResumeLayout(false);
             this.wmiBox.PerformLayout();
             this.CmdBox.ResumeLayout(false);
+            this.CmdBox.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -355,8 +367,9 @@
         private System.Windows.Forms.Button savebutton;
         private System.Windows.Forms.Button clearbtn;
         private System.Windows.Forms.GroupBox CmdBox;
-        private System.Windows.Forms.ListBox wmiCmdList;
-        private System.Windows.Forms.RichTextBox testOutput;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button programmRun;
+        private System.Windows.Forms.TextBox programmBox;
     }
 }
 
